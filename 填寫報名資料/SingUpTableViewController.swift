@@ -84,6 +84,7 @@ class SingUpTableViewController: UITableViewController {
     //送出資料
     @IBAction func postData(_ sender: UIButton) {
         postSingData()
+        
     }
     
 
