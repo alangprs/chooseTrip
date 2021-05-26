@@ -54,6 +54,7 @@
 		4DE9A7642658BD4D005E5045 = {
 			isa = PBXGroup;
 			children = (
+				4DE9A7A3265E623E005E5045 /* 實驗 */,
 				4DE9A798265A61C8005E5045 /* 填寫報名資料 */,
 				4DE9A78D2658DE23005E5045 /* 行程總表 */,
 				4DE9A78C2658DE10005E5045 /* 選購畫面 */,
@@ -110,6 +111,13 @@
 				4DE9A79D265B736D005E5045 /* ShowDataTex.swift */,
 			);
 			path = "填寫報名資料";
+			sourceTree = "<group>";
+		};
+		4DE9A7A3265E623E005E5045 /* 實驗 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "實驗";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
