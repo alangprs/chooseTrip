@@ -80,13 +80,13 @@ class SingUpTableViewController: UITableViewController {
         }
         
     }
-    //跳出未填寫完資料通知
-    func showNotFinshDataAlertController(){
-        let controller = UIAlertController(title: "請確認資料是否填寫完整", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
-        controller.addAction(action)
-        present(controller, animated: true, completion: nil)
-    }
+//    //跳出未填寫完資料通知
+//    func showNotFinshDataAlertController(){
+//        let controller = UIAlertController(title: "請確認資料是否填寫完整", message: "", preferredStyle: .alert)
+//        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
+//        controller.addAction(action)
+//        present(controller, animated: true, completion: nil)
+//    }
     //跳出資料確認通知
     func showConfirmDataAlerController(){
         catchEnterData()
@@ -104,7 +104,6 @@ class SingUpTableViewController: UITableViewController {
     //送出資料
     @IBAction func postData(_ sender: UIButton) {
         catchEnterData() // 讀取cell填寫內容
-        
         showConfirmDataAlerController()
         
     }
@@ -119,7 +118,6 @@ class SingUpTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        
         return personalData.count //等於資料格數
     }
 
@@ -128,7 +126,6 @@ class SingUpTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(SIngUpTableViewCell.self)", for: indexPath) as? SIngUpTableViewCell else { return UITableViewCell() }
         let row = personalData[indexPath.row]
         switch row {
-        
         //顯示每個cell自定義文字
         case .Name:
             let name = personalData[indexPath.row]
@@ -143,7 +140,6 @@ class SingUpTableViewController: UITableViewController {
             let phoneNumber = personalData[indexPath.row]
             cell.singUpLabel.text = phoneNumber.rawValue
         }
-
         return cell
     }
     
