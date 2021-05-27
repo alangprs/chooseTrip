@@ -3,17 +3,12 @@
 import UIKit
 
 class ChooseDataViewController: UIViewController {
-
     //顯示label 文字
     @IBOutlet var showChooseDataLabel: [UILabel]!
-    
     @IBOutlet weak var showChooseDastaImage: UIImageView!
-    
     @IBOutlet weak var showChooseDataTex: UITextView!
-    
-    
     var fields:Fields
-    
+    //存準備傳去第三頁資料
     var value = Int()
     var sum = Int()
     var name = String()
@@ -24,7 +19,6 @@ class ChooseDataViewController: UIViewController {
         self.fields = fields
         super .init(coder: coder)
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -48,15 +42,11 @@ class ChooseDataViewController: UIViewController {
         showChooseDataLabel[4].text = "\(sum)"
        
     }
-    
-    
     @IBSegueAction func showPage3(_ coder: NSCoder) -> SingUpTableViewController? {
         data = fields.fields.Data
         name = fields.fields.Name
         return SingUpTableViewController(coder: coder, value: value, sum: sum, name: name, data: data)
     }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         showChooseDataLabel[0].text = fields.fields.Name
@@ -64,10 +54,7 @@ class ChooseDataViewController: UIViewController {
         showChooseDataLabel[2].text = "$\(fields.fields.Price)RM" //顯示第一頁選到行程的金額
         showChooseDataLabel[4].text = "\(fields.fields.Price)"
         showChooseDataTex.text = fields.fields.TripData
-        catchImage()
-       
-        
-        
+        catchImage() 
     }
    
 

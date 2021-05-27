@@ -9,11 +9,11 @@ class SingUpTableViewController: UITableViewController {
     @IBOutlet var singUpShowLabel: [UILabel]!
     var uploadData = [Fieldss]() //要上傳的資料
     let personalData = PersonalData.allCases //自定義的資料填寫cell內容
+    //接第二頁傳來的資料
     var value = Int()
     var sum = Int()
     var name = String()
     var data = String()
-    
 //    //存讀到輸入的基本資料
     var arrayOfNames = [String]()
     //文字顯示
@@ -42,7 +42,6 @@ class SingUpTableViewController: UITableViewController {
     }
     //讀cell裡面 輸入的文字
     func catchEnterData(){
-//        var arrayOfNames = [String]()
             var i = 0
             while i < personalData.count {
                 let indexPath = IndexPath(row: i, section: 0)
@@ -81,9 +80,32 @@ class SingUpTableViewController: UITableViewController {
         }
         
     }
+    //跳出未填寫完資料通知
+    func showNotFinshDataAlertController(){
+        let controller = UIAlertController(title: "請確認資料是否填寫完整", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
+        controller.addAction(action)
+        present(controller, animated: true, completion: nil)
+    }
+    //跳出資料確認通知
+    func showConfirmDataAlerController(){
+        catchEnterData()
+        let controller = UIAlertController(title: "確認送出訂單", message: "\n \(name) \n \(data)\n \(value)人 \n 總金額:\(sum)ＲＭ \n 聯絡人資訊 \n 姓名:\(arrayOfNames[0])\n 生日:\(arrayOfNames[1])\n護照號碼:\(arrayOfNames[2])\n 電話號碼:\(arrayOfNames[3])", preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "確認", style: .default) { _ in
+            self.postSingData() //點選確認 執行上傳資料func
+        }
+        let notAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+        controller.addAction(yesAction)
+        controller.addAction(notAction)
+        present(controller, animated: true, completion: nil)
+    }
+    
     //送出資料
     @IBAction func postData(_ sender: UIButton) {
-        postSingData()
+        catchEnterData() // 讀取cell填寫內容
+        
+        showConfirmDataAlerController()
         
     }
     
