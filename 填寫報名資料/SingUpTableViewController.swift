@@ -10,24 +10,19 @@ class SingUpTableViewController: UITableViewController {
     var uploadData = [Fieldss]() //要上傳的資料
     let personalData = PersonalData.allCases //自定義的資料填寫cell內容
     //接第二頁傳來的資料
-    var value = Int()
-    var sum = Int()
-    var name = String()
-    var data = String()
-//    //存讀到輸入的基本資料
+    var page3Data:PageData
+    //存讀到輸入的基本資料
     var arrayOfNames = [String]()
     //文字顯示
     func showLabel(){
-        singUpShowLabel[0].text = "行程名稱：\(name)"
-        singUpShowLabel[1].text = "每個\(data)"
-        singUpShowLabel[2].text = "目前人數：\(value)人"
-        singUpShowLabel[3].text = "總金額：\(sum)ＲＭ"
+        singUpShowLabel[0].text = "行程名稱：\(page3Data.name!)"
+        singUpShowLabel[1].text = "每個\(page3Data.data!)"
+        singUpShowLabel[2].text = "目前人數：\(page3Data.value!)人"
+        singUpShowLabel[3].text = "總金額：\(page3Data.sum!)ＲＭ"
     }
-    init?(coder:NSCoder,value:Int,sum:Int,name:String,data:String){
-        self.value = value
-        self.sum = sum
-        self.name = name
-        self.data = data
+    
+    init?(coder:NSCoder,page3Data:PageData){
+        self.page3Data = page3Data
         super.init(coder: coder)
     }
     
@@ -56,7 +51,7 @@ class SingUpTableViewController: UITableViewController {
     //上傳資料
     func postSingData(){
         catchEnterData()
-        let singUpItem = UploadData(records: [.init(fields: .init(StrokeName: name,
+        let singUpItem = UploadData(records: [.init(fields: .init(StrokeName: page3Data.name!,
                                                                   Name: arrayOfNames[0], Birthday: arrayOfNames[1], IDNumber: arrayOfNames[2], PhoneNumber: arrayOfNames[3]))])
         print("要上傳的資料",singUpItem)
         let url = URL(string: "https://api.airtable.com/v0/app5ZRbQye9xZvWSR/Table%201?maxRecords=3&view=Grid%20view")!
@@ -90,7 +85,7 @@ class SingUpTableViewController: UITableViewController {
     //跳出資料確認通知
     func showConfirmDataAlerController(){
         catchEnterData()
-        let controller = UIAlertController(title: "確認送出訂單", message: "\n \(name) \n \(data)\n \(value)人 \n 總金額:\(sum)ＲＭ \n 聯絡人資訊 \n 姓名:\(arrayOfNames[0])\n 生日:\(arrayOfNames[1])\n護照號碼:\(arrayOfNames[2])\n 電話號碼:\(arrayOfNames[3])", preferredStyle: .alert)
+        let controller = UIAlertController(title: "確認送出訂單", message: "\n \(page3Data.name!) \n \(page3Data.data!)\n \(page3Data.value!)人 \n 總金額:\(page3Data.sum!)ＲＭ \n 聯絡人資訊 \n 姓名:\(arrayOfNames[0])\n 生日:\(arrayOfNames[1])\n護照號碼:\(arrayOfNames[2])\n 電話號碼:\(arrayOfNames[3])", preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "確認", style: .default) { _ in
             self.postSingData() //點選確認 執行上傳資料func

@@ -9,11 +9,7 @@ class ChooseDataViewController: UIViewController {
     @IBOutlet weak var showChooseDataTex: UITextView!
     var fields:Fields
     //存準備傳去第三頁資料
-    var value = Int()
-    var sum = Int()
-    var name = String()
-    var data = String()
-        
+    var page2Data = PageData()   
     //接第一頁資料
     init?(coder:NSCoder,fields:Fields){
         self.fields = fields
@@ -36,16 +32,18 @@ class ChooseDataViewController: UIViewController {
     }
    //選擇人數
     @IBAction func chooseDataStrpper(_ sender: UIStepper) {
-        value = Int(sender.value+1)
-        showChooseDataLabel[3].text = "\(value)" //顯示目前選擇人數
-        sum = fields.fields.Price * value //總金額
-        showChooseDataLabel[4].text = "\(sum)"
-       
+        
+        page2Data.value = Int(sender.value+1)
+        showChooseDataLabel[3].text = "\(page2Data.value!)" //顯示目前選擇人數
+        page2Data.sum = fields.fields.Price * page2Data.value!
+        showChooseDataLabel[4].text = "\(page2Data.sum!)"
+        print("確認抓到人數",page2Data.value!)
+        print("確認總金額",page2Data.sum!)
     }
     @IBSegueAction func showPage3(_ coder: NSCoder) -> SingUpTableViewController? {
-        data = fields.fields.Data
-        name = fields.fields.Name
-        return SingUpTableViewController(coder: coder, value: value, sum: sum, name: name, data: data)
+        return SingUpTableViewController(coder: coder, page3Data: page2Data)
+        
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +52,12 @@ class ChooseDataViewController: UIViewController {
         showChooseDataLabel[2].text = "$\(fields.fields.Price)RM" //顯示第一頁選到行程的金額
         showChooseDataLabel[4].text = "\(fields.fields.Price)"
         showChooseDataTex.text = fields.fields.TripData
-        catchImage() 
+        catchImage()
+        
+        page2Data.name = fields.fields.Name
+        print("確認名稱",page2Data.name!)
+        page2Data.data = fields.fields.Data
+        print("確認日期",page2Data.data!)
     }
    
 
