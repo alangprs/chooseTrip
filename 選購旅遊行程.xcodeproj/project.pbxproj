@@ -108,7 +108,6 @@
 			children = (
 				4DE9A7A4265E6355005E5045 /* data */,
 				4DE9A796265A61A2005E5045 /* SingUpTableViewController.swift */,
-				4D521543265E95DD00C059A2 /* Page3Data.swift */,
 			);
 			path = "填寫報名資料";
 			sourceTree = "<group>";
@@ -118,6 +117,7 @@
 			children = (
 				4DE9A799265A662E005E5045 /* SIngUpTableViewCell.swift */,
 				4DE9A79B265B57E0005E5045 /* UploadData.swift */,
+				4D521543265E95DD00C059A2 /* Page3Data.swift */,
 				4DE9A79D265B736D005E5045 /* ShowDataTex.swift */,
 			);
 			path = data;

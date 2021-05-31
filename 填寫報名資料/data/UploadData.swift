@@ -19,6 +19,8 @@ struct UpData:Encodable {
     let Birthday:String
     let IDNumber:String
     let PhoneNumber:String
+    let NumberOfPeople:Int
+    let TotalSum:Int
     
     
 }

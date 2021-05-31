@@ -58,7 +58,6 @@ class ChooseDataViewController: UIViewController {
         showChooseDataLabel[0].text = fields.fields.Name
         showChooseDataLabel[1].text = fields.fields.Data
         showChooseDataLabel[2].text = "$\(fields.fields.Price)RM" //顯示第一頁選到行程的金額
-//        showChooseDataLabel[4].text = "\(fields.fields.Price)"
         showChooseDataTex.text = fields.fields.TripData
         catchImage()//背景抓圖片
         page2Data.name = fields.fields.Name

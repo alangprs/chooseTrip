@@ -54,7 +54,7 @@ class SingUpTableViewController: UITableViewController {
     func postSingData(){
         catchEnterData()
         let singUpItem = UploadData(records: [.init(fields: .init(StrokeName: page3Data.name!,
-                                                                  Name: arrayOfNames[0], Birthday: arrayOfNames[1], IDNumber: arrayOfNames[2], PhoneNumber: arrayOfNames[3]))])
+                                                                  Name: arrayOfNames[0], Birthday: arrayOfNames[1], IDNumber: arrayOfNames[2], PhoneNumber: arrayOfNames[3],      NumberOfPeople: page3Data.value!, TotalSum: page3Data.sum!                   ))])
         print("要上傳的資料",singUpItem)
         let url = URL(string: "https://api.airtable.com/v0/app5ZRbQye9xZvWSR/Table%201?maxRecords=3&view=Grid%20view")!
         var request = URLRequest(url: url)
@@ -78,12 +78,12 @@ class SingUpTableViewController: UITableViewController {
         
     }
     //跳出未填寫完資料通知
-    func showNotFinshDataAlertController(){
-        let controller = UIAlertController(title: "請確認資料是否填寫完整", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
-        controller.addAction(action)
-        present(controller, animated: true, completion: nil)
-    }
+//    func showNotFinshDataAlertController(){
+//        let controller = UIAlertController(title: "請確認資料是否填寫完整", message: "", preferredStyle: .alert)
+//        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
+//        controller.addAction(action)
+//        present(controller, animated: true, completion: nil)
+//    }
     //跳出資料確認通知
     func showConfirmDataAlerController(){
         catchEnterData()
@@ -102,9 +102,6 @@ class SingUpTableViewController: UITableViewController {
     @IBAction func postData(_ sender: UIButton) {
         catchEnterData() // 讀取cell填寫內容
         showConfirmDataAlerController()//跳出資料確認通知
-        
-       
-       
     }
     
 
