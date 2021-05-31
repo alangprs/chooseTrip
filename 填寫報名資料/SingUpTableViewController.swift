@@ -11,6 +11,7 @@ class SingUpTableViewController: UITableViewController {
     let personalData = PersonalData.allCases //自定義的資料填寫cell內容
     //接第二頁傳來的資料
     var page3Data:PageData
+    var texData = [String?]() //讀texfied文字
     //存讀到輸入的基本資料
     var arrayOfNames = [String]()
     //文字顯示
@@ -29,12 +30,14 @@ class SingUpTableViewController: UITableViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         showLabel()
     }
+    
+    
+    
     //讀cell裡面 輸入的文字
     func catchEnterData(){
             var i = 0
@@ -43,7 +46,6 @@ class SingUpTableViewController: UITableViewController {
                 let cell : SIngUpTableViewCell? = (self.tableView.cellForRow(at: indexPath) as! SIngUpTableViewCell?)
                 if let item = cell?.singUpTex.text {
                     arrayOfNames.append(item)
-                    
                 }
                 i = i + 1
             }
@@ -75,13 +77,13 @@ class SingUpTableViewController: UITableViewController {
         }
         
     }
-//    //跳出未填寫完資料通知
-//    func showNotFinshDataAlertController(){
-//        let controller = UIAlertController(title: "請確認資料是否填寫完整", message: "", preferredStyle: .alert)
-//        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
-//        controller.addAction(action)
-//        present(controller, animated: true, completion: nil)
-//    }
+    //跳出未填寫完資料通知
+    func showNotFinshDataAlertController(){
+        let controller = UIAlertController(title: "請確認資料是否填寫完整", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
+        controller.addAction(action)
+        present(controller, animated: true, completion: nil)
+    }
     //跳出資料確認通知
     func showConfirmDataAlerController(){
         catchEnterData()
@@ -99,8 +101,10 @@ class SingUpTableViewController: UITableViewController {
     //送出資料
     @IBAction func postData(_ sender: UIButton) {
         catchEnterData() // 讀取cell填寫內容
-        showConfirmDataAlerController()
+        showConfirmDataAlerController()//跳出資料確認通知
         
+       
+       
     }
     
 
@@ -119,7 +123,9 @@ class SingUpTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(SIngUpTableViewCell.self)", for: indexPath) as? SIngUpTableViewCell else { return UITableViewCell() }
+        
         let row = personalData[indexPath.row]
+       
         switch row {
         //顯示每個cell自定義文字
         case .Name:

@@ -7,6 +7,7 @@ class ChooseDataViewController: UIViewController {
     @IBOutlet var showChooseDataLabel: [UILabel]!
     @IBOutlet weak var showChooseDastaImage: UIImageView!
     @IBOutlet weak var showChooseDataTex: UITextView!
+    var value = 0
     var fields:Fields
     //存準備傳去第三頁資料
     var page2Data = PageData()   
@@ -30,34 +31,38 @@ class ChooseDataViewController: UIViewController {
             }.resume()
         }
     }
+    //跳出人數選擇錯誤通知
+    func peopleNumberAler(){
+        let alertController = UIAlertController(title: "人數最少一人", message: "", preferredStyle: .alert)
+        let alerAction =  UIAlertAction(title: "確定", style: .default, handler: nil)
+        alertController.addAction(alerAction)
+        present(alertController, animated: true, completion: nil)
+    }
    //選擇人數
     @IBAction func chooseDataStrpper(_ sender: UIStepper) {
-        
-        page2Data.value = Int(sender.value+1)
+        page2Data.value = Int(sender.value)
         showChooseDataLabel[3].text = "\(page2Data.value!)" //顯示目前選擇人數
         page2Data.sum = fields.fields.Price * page2Data.value!
         showChooseDataLabel[4].text = "\(page2Data.sum!)"
-        print("確認抓到人數",page2Data.value!)
-        print("確認總金額",page2Data.sum!)
     }
     @IBSegueAction func showPage3(_ coder: NSCoder) -> SingUpTableViewController? {
+        
+        if page2Data.value! < 1{
+            peopleNumberAler() //跳出人數不足通知
+        }
+        
         return SingUpTableViewController(coder: coder, page3Data: page2Data)
-        
-        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         showChooseDataLabel[0].text = fields.fields.Name
         showChooseDataLabel[1].text = fields.fields.Data
         showChooseDataLabel[2].text = "$\(fields.fields.Price)RM" //顯示第一頁選到行程的金額
-        showChooseDataLabel[4].text = "\(fields.fields.Price)"
+//        showChooseDataLabel[4].text = "\(fields.fields.Price)"
         showChooseDataTex.text = fields.fields.TripData
-        catchImage()
-        
+        catchImage()//背景抓圖片
         page2Data.name = fields.fields.Name
-        print("確認名稱",page2Data.name!)
         page2Data.data = fields.fields.Data
-        print("確認日期",page2Data.data!)
     }
    
 
