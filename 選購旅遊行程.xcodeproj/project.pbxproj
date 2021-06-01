@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D2CB46F266551F0005F872F /* OrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2CB46E266551F0005F872F /* OrderTableViewController.swift */; };
+		4D2CB47426655269005F872F /* OderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2CB47326655269005F872F /* OderData.swift */; };
+		4D2CB476266563BD005F872F /* OrderCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2CB475266563BD005F872F /* OrderCellTableViewCell.swift */; };
 		4D521544265E95DE00C059A2 /* Page3Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D521543265E95DD00C059A2 /* Page3Data.swift */; };
 		4DE9A7712658BD4D005E5045 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9A7702658BD4D005E5045 /* AppDelegate.swift */; };
 		4DE9A7732658BD4D005E5045 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9A7722658BD4D005E5045 /* SceneDelegate.swift */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D2CB46E266551F0005F872F /* OrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewController.swift; sourceTree = "<group>"; };
+		4D2CB47326655269005F872F /* OderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OderData.swift; sourceTree = "<group>"; };
+		4D2CB475266563BD005F872F /* OrderCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCellTableViewCell.swift; sourceTree = "<group>"; };
 		4D521543265E95DD00C059A2 /* Page3Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3Data.swift; sourceTree = "<group>"; };
 		4DE9A76D2658BD4D005E5045 /* 選購旅遊行程.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "選購旅遊行程.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DE9A7702658BD4D005E5045 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,9 +59,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D2CB47026655216005F872F /* 訂單 */ = {
+			isa = PBXGroup;
+			children = (
+				4D2CB475266563BD005F872F /* OrderCellTableViewCell.swift */,
+				4D2CB46E266551F0005F872F /* OrderTableViewController.swift */,
+				4D2CB47326655269005F872F /* OderData.swift */,
+			);
+			path = "訂單";
+			sourceTree = "<group>";
+		};
 		4DE9A7642658BD4D005E5045 = {
 			isa = PBXGroup;
 			children = (
+				4D2CB47026655216005F872F /* 訂單 */,
 				4DE9A798265A61C8005E5045 /* 填寫報名資料 */,
 				4DE9A78D2658DE23005E5045 /* 行程總表 */,
 				4DE9A78C2658DE10005E5045 /* 選購畫面 */,
@@ -197,8 +214,11 @@
 				4DE9A7872658BE4C005E5045 /* CatchHomeData.swift in Sources */,
 				4DE9A791265901E8005E5045 /* ChooseDataViewController.swift in Sources */,
 				4DE9A7892658D3D2005E5045 /* CatchHomeCellTableViewCell.swift in Sources */,
+				4D2CB46F266551F0005F872F /* OrderTableViewController.swift in Sources */,
 				4DE9A7852658BDF9005E5045 /* HomeTableViewController.swift in Sources */,
+				4D2CB476266563BD005F872F /* OrderCellTableViewCell.swift in Sources */,
 				4DE9A7712658BD4D005E5045 /* AppDelegate.swift in Sources */,
+				4D2CB47426655269005F872F /* OderData.swift in Sources */,
 				4D521544265E95DE00C059A2 /* Page3Data.swift in Sources */,
 				4DE9A79A265A662E005E5045 /* SIngUpTableViewCell.swift in Sources */,
 				4DE9A79C265B57E0005E5045 /* UploadData.swift in Sources */,

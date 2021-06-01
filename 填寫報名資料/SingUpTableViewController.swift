@@ -69,6 +69,7 @@ class SingUpTableViewController: UITableViewController {
                     print(content!)
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        self.jumpToOderController() //跳到訂單資料畫面
                     }
                 }else{
                     print(error)
@@ -91,11 +92,21 @@ class SingUpTableViewController: UITableViewController {
         
         let yesAction = UIAlertAction(title: "確認", style: .default) { _ in
             self.postSingData() //點選確認 執行上傳資料func
+            
         }
         let notAction = UIAlertAction(title: "取消", style: .default, handler: nil)
         controller.addAction(yesAction)
         controller.addAction(notAction)
         present(controller, animated: true, completion: nil)
+    }
+    
+    //跳到訂單頁面
+    func jumpToOderController(){
+        if let controller = storyboard?.instantiateViewController(identifier: "\(OrderTableViewController.self)"){
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true, completion: nil)
+        }
+        
     }
     
     //送出資料
