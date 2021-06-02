@@ -55,7 +55,6 @@ class SingUpTableViewController: UITableViewController {
         catchEnterData()
         let singUpItem = UploadData(records: [.init(fields: .init(StrokeName: page3Data.name!,
                                                                   Name: arrayOfNames[0], Birthday: arrayOfNames[1], IDNumber: arrayOfNames[2], PhoneNumber: arrayOfNames[3],      NumberOfPeople: page3Data.value!, TotalSum: page3Data.sum!                   ))])
-        print("要上傳的資料",singUpItem)
         let url = URL(string: "https://api.airtable.com/v0/app5ZRbQye9xZvWSR/Table%201?maxRecords=3&view=Grid%20view")!
         var request = URLRequest(url: url)
         request.httpMethod = "Post"
@@ -68,8 +67,9 @@ class SingUpTableViewController: UITableViewController {
                     let content = String(data:data,encoding: .utf8)
                     print(content!)
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
                         self.jumpToOderController() //跳到訂單資料畫面
+                        
+                        
                     }
                 }else{
                     print(error)

@@ -17,10 +17,8 @@ class OrderTableViewController: UITableViewController {
                 do {
                     let recordsResponse = try JSONDecoder().decode(OderResponse.self, from: data)
                     self.getOderArray = recordsResponse.records
-                    print(self.getOderArray)
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-                    
                     }
                     
                     
@@ -46,7 +44,9 @@ class OrderTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print("數量",getOderArray.count)
         return getOderArray.count
+        
     }
 
     

@@ -102,7 +102,7 @@
         <!--訂單資料-->
         <scene sceneID="af2-MX-LBO">
             <objects>
-                <tableViewController id="D2N-SS-FV1" customClass="OrderTableViewController" customModule="選購旅遊行程" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OrderTableViewController" id="D2N-SS-FV1" customClass="OrderTableViewController" customModule="選購旅遊行程" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="lyd-Un-Fuw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
