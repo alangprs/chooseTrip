@@ -34,39 +34,38 @@ class OrderTableViewController: UITableViewController {
             }
         }.resume()
     }
-    //刪除資料
-//    func deleteOrder(cllNumber:String){
-//        let urlstr = URL(string: "https://api.airtable.com/v0/app5ZRbQye9xZvWSR/Table%201" + "/" + "\(getData?.id)" )!
-//        var request = URLRequest(url: urlstr)
-//        request.httpMethod = "DELETE"
-//        request.setValue("Bearer keyyBKvryff4mC1qu", forHTTPHeaderField: "Authorization")
-//        URLSession.shared.dataTask(with: request) { data, respond, error in
-//            if data != nil{
-//                DispatchQueue.main.async {
-//                    self.catchOderData()
-//                }
-//            }
-//        }.resume()
-//    }
+    
     //左右滑動刪除cell
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let urlstr = URL(string: "https://api.airtable.com/v0/app5ZRbQye9xZvWSR/Table%201" + "/" + self.getOderArray[indexPath.row].id)!
-        var request = URLRequest(url: urlstr)
-        request.httpMethod = "DELETE"
-        request.setValue("Bearer keyyBKvryff4mC1qu", forHTTPHeaderField: "Authorization")
-        URLSession.shared.dataTask(with: request) { data, respond, error in
-            if let data = data,
-               let status = String(data:data,encoding: .utf8){
-                DispatchQueue.main.async {
-                    print("看刪除",status)
+        
+        if editingStyle == .delete{
+            let controller = UIAlertController(title: "確認刪除此筆訂單？", message: "", preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: "確認", style: .default) { (_) in
+                
+                let urlstr = URL(string: "https://api.airtable.com/v0/app5ZRbQye9xZvWSR/Table%201" + "/" + self.getOderArray[indexPath.row].id)!
+                var request = URLRequest(url: urlstr)
+                request.httpMethod = "DELETE"
+                request.setValue("Bearer keyyBKvryff4mC1qu", forHTTPHeaderField: "Authorization")
+                URLSession.shared.dataTask(with: request) { data, respond, error in
+                    if let data = data,
+                       let status = String(data:data,encoding: .utf8){
+                        DispatchQueue.main.async {
+                            print("看刪除",status)
+                            
+                            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                            self.catchOderData()
+                        }
+                    }
                     
-                    self.tableView.deleteRows(at: [indexPath], with: .automatic)
-                    self.catchOderData()
-                }
+                }.resume()
+                self.getOderArray.remove(at: indexPath.row)
             }
-            
-        }.resume()
-        self.getOderArray.remove(at: indexPath.row)
+            let noAction = UIAlertAction(title: "取消", style: .default, handler: nil)
+            controller.addAction(yesAction)
+            controller.addAction(noAction)
+            present(controller, animated: true, completion: nil)
+        }
+        
     }
 
     override func viewDidLoad() {
