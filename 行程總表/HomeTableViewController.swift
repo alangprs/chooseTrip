@@ -4,10 +4,13 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
 
+    
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     var tripData = [Fields]()
     
     //抓AirTable資料
     func catchData(){
+        indicator.isHidden = false
         let urlstr = URL(string: "https://api.airtable.com/v0/app1pJYMNqBvFt6ce/Table%201")!
         var request = URLRequest(url: urlstr)
         request.setValue("Bearer keyyBKvryff4mC1qu", forHTTPHeaderField: "Authorization")
@@ -19,6 +22,7 @@ class HomeTableViewController: UITableViewController {
                         let recordsResponse = try decoder.decode(RecordsResponse.self, from: data)
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
+                            self.indicator.isHidden = true
                         }
                         self.tripData = recordsResponse.records
                     } catch {
@@ -59,7 +63,6 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("數量01",tripData.count)
         return tripData.count
     }
 

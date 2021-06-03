@@ -3,6 +3,8 @@
 import UIKit
 
 class ChooseDataViewController: UIViewController {
+    
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     //顯示label 文字
     @IBOutlet var showChooseDataLabel: [UILabel]!
     @IBOutlet weak var showChooseDastaImage: UIImageView!
@@ -21,11 +23,13 @@ class ChooseDataViewController: UIViewController {
     }
     //在背景抓照片
     func catchImage() {
+        indicator.isHidden = false
         if let url = URL(string: fields.fields.Image){
             URLSession.shared.dataTask(with: url) { data, respond, error in
                 if let data = data{
                     DispatchQueue.main.async {
                         self.showChooseDastaImage.image = UIImage(data: data)
+                        self.indicator.isHidden = true
                     }
                 }
             }.resume()

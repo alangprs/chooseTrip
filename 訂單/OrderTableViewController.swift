@@ -6,9 +6,14 @@ import UIKit
 
 class OrderTableViewController: UITableViewController {
     
+    
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
     var getOderArray = [OderFields]()
+    var getData:OderResponse? //消失
     //抓網路資料
     func catchOderData(){
+        indicator.isHidden = false
         let urlstr = URL(string: "https://api.airtable.com/v0/app5ZRbQye9xZvWSR/Table%201?maxRecords=3&view=Grid%20view")!
         var request = URLRequest(url: urlstr)
         request.setValue("Bearer keyyBKvryff4mC1qu", forHTTPHeaderField: "Authorization")
@@ -19,6 +24,7 @@ class OrderTableViewController: UITableViewController {
                     self.getOderArray = recordsResponse.records
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
+                        self.indicator.isHidden = true
                     }
                     
                     
@@ -28,13 +34,54 @@ class OrderTableViewController: UITableViewController {
             }
         }.resume()
     }
+    //刪除資料
+//    func deleteOrder(cllNumber:String){
+//        let urlstr = URL(string: "https://api.airtable.com/v0/app5ZRbQye9xZvWSR/Table%201" + "/" + "\(getData?.id)" )!
+//        var request = URLRequest(url: urlstr)
+//        request.httpMethod = "DELETE"
+//        request.setValue("Bearer keyyBKvryff4mC1qu", forHTTPHeaderField: "Authorization")
+//        URLSession.shared.dataTask(with: request) { data, respond, error in
+//            if data != nil{
+//                DispatchQueue.main.async {
+//                    self.catchOderData()
+//                }
+//            }
+//        }.resume()
+//    }
+    //左右滑動刪除cell
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let urlstr = URL(string: "https://api.airtable.com/v0/app5ZRbQye9xZvWSR/Table%201" + "/" + self.getOderArray[indexPath.row].id)!
+        var request = URLRequest(url: urlstr)
+        request.httpMethod = "DELETE"
+        request.setValue("Bearer keyyBKvryff4mC1qu", forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request) { data, respond, error in
+            if let data = data,
+               let status = String(data:data,encoding: .utf8){
+                DispatchQueue.main.async {
+                    print("看刪除",status)
+                    
+                    self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                    self.catchOderData()
+                }
+            }
+            
+        }.resume()
+        self.getOderArray.remove(at: indexPath.row)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         catchOderData()//抓網路資料
        
     }
-
+    //回到選購畫面
+    @IBAction func backHomeTabelViewController(_ sender: UIBarButtonItem) {
+        if let controller = storyboard?.instantiateViewController(identifier: "\(HomeTableViewController.self)"){
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,7 +91,6 @@ class OrderTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("數量",getOderArray.count)
         return getOderArray.count
         
     }

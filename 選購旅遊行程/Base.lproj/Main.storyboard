@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3oh-FF-Uuo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1im-yU-kWg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -11,11 +11,15 @@
         <!--行程總表-->
         <scene sceneID="Ruz-X1-Ull">
             <objects>
-                <tableViewController id="r0U-jB-FUK" customClass="HomeTableViewController" customModule="選購旅遊行程" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HomeTableViewController" id="r0U-jB-FUK" customClass="HomeTableViewController" customModule="選購旅遊行程" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="uBH-0t-E0V">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="Bwj-N0-c0v">
+                            <rect key="frame" x="0.0" y="157.5" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CatchHomeCellTableViewCell" rowHeight="90" id="3xF-Wx-JsA" customClass="CatchHomeCellTableViewCell" customModule="選購旅遊行程" customModuleProvider="target">
                                 <rect key="frame" x="20" y="49.5" width="374" height="90"/>
@@ -92,14 +96,16 @@
                             <outlet property="delegate" destination="r0U-jB-FUK" id="ChJ-hT-wcu"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="行程" id="6dr-pz-UM9"/>
                     <navigationItem key="navigationItem" title="行程總表" id="rIy-xg-T14"/>
+                    <connections>
+                        <outlet property="indicator" destination="Bwj-N0-c0v" id="JnM-zl-kJ3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umG-Md-jV5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1094.2028985507247" y="154.6875"/>
+            <point key="canvasLocation" x="2004.3478260869567" y="154.6875"/>
         </scene>
-        <!--訂單資料-->
+        <!--Order Table View Controller-->
         <scene sceneID="af2-MX-LBO">
             <objects>
                 <tableViewController storyboardIdentifier="OrderTableViewController" id="D2N-SS-FV1" customClass="OrderTableViewController" customModule="選購旅遊行程" customModuleProvider="target" sceneMemberID="viewController">
@@ -107,6 +113,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="Biu-tm-fHa">
+                            <rect key="frame" x="0.0" y="157.5" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderCellTableViewCell" rowHeight="90" id="qOt-Zc-3Vg" customClass="OrderCellTableViewCell" customModule="選購旅遊行程" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="49.5" width="414" height="90"/>
@@ -180,12 +190,21 @@
                             <outlet property="delegate" destination="D2N-SS-FV1" id="nht-tZ-Con"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="訂單資料" id="QCT-Gl-unS"/>
-                    <navigationItem key="navigationItem" id="pmM-t6-Xkw"/>
+                    <navigationItem key="navigationItem" id="gq6-6x-rSr">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.backward" catalog="system" id="c42-TZ-gn7">
+                            <connections>
+                                <action selector="backHomeTabelViewController:" destination="D2N-SS-FV1" id="SgZ-of-g54"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="indicator" destination="Biu-tm-fHa" id="i4G-VH-lTL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VyP-Cu-0q0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1977" y="882"/>
+            <point key="canvasLocation" x="2887" y="882"/>
         </scene>
         <!--行程資料-->
         <scene sceneID="jzV-HC-XYF">
@@ -282,12 +301,17 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="7O6-zo-kpX">
+                                <rect key="frame" x="197" y="247" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="D9B-3q-b6a"/>
                         <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="行程資料" id="yad-yq-s1r"/>
                     <connections>
+                        <outlet property="indicator" destination="7O6-zo-kpX" id="c5X-Kh-amn"/>
                         <outlet property="showChooseDastaImage" destination="nAa-UC-0av" id="tVO-B5-5TF"/>
                         <outlet property="showChooseDataTex" destination="Son-Dh-sWc" id="ENb-YI-8kP"/>
                         <outletCollection property="showChooseDataLabel" destination="8ua-6Z-XEh" collectionClass="NSMutableArray" id="z9f-Yz-F6t"/>
@@ -299,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Px2-CX-vsZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1976.8115942028987" y="154.6875"/>
+            <point key="canvasLocation" x="2886.9565217391305" y="154.6875"/>
         </scene>
         <!--資料填寫-->
         <scene sceneID="zcy-gh-QLh">
@@ -414,47 +438,48 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vqu-sq-ngg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2905.7971014492755" y="154.6875"/>
+            <point key="canvasLocation" x="3815.9420289855075" y="154.6875"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="hqT-ox-3Qx">
+        <!--行程-->
+        <scene sceneID="dxH-3F-Hrf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3oh-FF-Uuo" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3a7-Mo-iFK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="行程" id="6dr-pz-UM9"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h9L-SV-sAT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qmq-6Y-psq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="YSv-0x-1JS" kind="relationship" relationship="rootViewController" id="EkG-hD-RXh"/>
+                        <segue destination="r0U-jB-FUK" kind="relationship" relationship="rootViewController" id="CGS-eK-Rml"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hea-TS-bpN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vbt-Jn-mpm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-726.08695652173924" y="154.6875"/>
+            <point key="canvasLocation" x="1094.2028985507247" y="154.6875"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="CuS-QB-kYD">
+        <!--Navigation Controller-->
+        <scene sceneID="CwZ-bz-v5i">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="YSv-0x-1JS" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1im-yU-kWg" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="uAH-yG-QIE"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RKL-Xu-u4I">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4HK-zp-RLq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="r0U-jB-FUK" kind="relationship" relationship="viewControllers" id="0Zd-Kh-lVw"/>
+                        <segue destination="D2N-SS-FV1" kind="relationship" relationship="rootViewController" id="bw1-6O-lmM"/>
                     </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="agN-Yp-t5S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RZy-xj-YrI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="184.05797101449278" y="154.6875"/>
+            <point key="canvasLocation" x="1976.8115942028987" y="881.91964285714278"/>
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

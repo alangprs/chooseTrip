@@ -7,6 +7,7 @@ struct OderResponse:Decodable {
 }
 struct OderFields:Decodable {
     let fields:OderData
+    let id:String
 }
 struct OderData:Decodable {
     let StrokeName:String
