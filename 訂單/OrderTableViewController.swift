@@ -72,13 +72,13 @@ class OrderTableViewController: UITableViewController {
         catchOderData()//抓網路資料
        
     }
-    //回到選購畫面
-    @IBAction func backHomeTabelViewController(_ sender: UIBarButtonItem) {
-        if let controller = storyboard?.instantiateViewController(identifier: "\(HomeTableViewController.self)"){
-            controller.modalPresentationStyle = .fullScreen
-            present(controller, animated: true, completion: nil)
-        }
-    }
+//    //回到選購畫面
+//    @IBAction func backHomeTabelViewController(_ sender: UIBarButtonItem) {
+//        if let controller = storyboard?.instantiateViewController(identifier: "\(HomeTableViewController.self)"){
+//            controller.modalPresentationStyle = .fullScreen
+//            present(controller, animated: true, completion: nil)
+//        }
+//    }
     
     // MARK: - Table view data source
 

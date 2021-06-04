@@ -120,7 +120,7 @@
                                 <navigationItem title="Title" id="PFv-zg-fNz">
                                     <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.backward" catalog="system" id="krH-bc-y83">
                                         <connections>
-                                            <action selector="backHomeTabelViewController:" destination="D2N-SS-FV1" id="HAv-36-LiC"/>
+                                            <segue destination="5dK-5w-Xjv" kind="unwind" unwindAction="unwindToHomeTableView:" id="EAS-Sh-h4b"/>
                                         </connections>
                                     </barButtonItem>
                                 </navigationItem>
@@ -212,6 +212,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VyP-Cu-0q0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="5dK-5w-Xjv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2887" y="882"/>
         </scene>
