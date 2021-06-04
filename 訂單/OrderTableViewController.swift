@@ -10,7 +10,6 @@ class OrderTableViewController: UITableViewController {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     var getOderArray = [OderFields]()
-    var getData:OderResponse? //消失
     //抓網路資料
     func catchOderData(){
         indicator.isHidden = false

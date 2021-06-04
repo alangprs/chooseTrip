@@ -9,6 +9,13 @@ class SIngUpTableViewCell: UITableViewCell {
     
     @IBOutlet weak var singUpTex: UITextField!
     
+    func f(){
+        if singUpTex.text?.isEmpty != nil{
+            print("有值喔")
+        }else{
+            print("沒有值")
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

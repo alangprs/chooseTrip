@@ -5,6 +5,7 @@ import UIKit
 
 class SingUpTableViewController: UITableViewController {
     
+    
     //view 上文字
     @IBOutlet var singUpShowLabel: [UILabel]!
     var uploadData = [Fieldss]() //要上傳的資料
@@ -35,9 +36,6 @@ class SingUpTableViewController: UITableViewController {
         super.viewDidLoad()
         showLabel()
     }
-    
-    
-    
     //讀cell裡面 輸入的文字
     func catchEnterData(){
             var i = 0
@@ -46,6 +44,7 @@ class SingUpTableViewController: UITableViewController {
                 let cell : SIngUpTableViewCell? = (self.tableView.cellForRow(at: indexPath) as! SIngUpTableViewCell?)
                 if let item = cell?.singUpTex.text {
                     arrayOfNames.append(item)
+                    
                 }
                 i = i + 1
             }
@@ -78,7 +77,7 @@ class SingUpTableViewController: UITableViewController {
         }
         
     }
-    //跳出未填寫完資料通知
+//    //跳出未填寫完資料通知
 //    func showNotFinshDataAlertController(){
 //        let controller = UIAlertController(title: "請確認資料是否填寫完整", message: "", preferredStyle: .alert)
 //        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
@@ -108,6 +107,8 @@ class SingUpTableViewController: UITableViewController {
         }
         
     }
+    
+    
     
     //送出資料
     @IBAction func postData(_ sender: UIButton) {
