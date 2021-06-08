@@ -8,13 +8,10 @@ class SingUpTableViewController: UITableViewController {
     
     //view 上文字
     @IBOutlet var singUpShowLabel: [UILabel]!
-    var uploadData = [Fieldss]() //要上傳的資料
-    let personalData = PersonalData.allCases //自定義的資料填寫cell內容
+    //基本資料cell
+    @IBOutlet var dataTexField: [UITextField]!
     //接第二頁傳來的資料
     var page3Data:PageData
-    var texData = [String?]() //讀texfied文字
-    //存讀到輸入的基本資料
-    var arrayOfNames = [String]()
     //文字顯示
     func showLabel(){
         singUpShowLabel[0].text = "行程名稱：\(page3Data.name!)"
@@ -36,24 +33,10 @@ class SingUpTableViewController: UITableViewController {
         super.viewDidLoad()
         showLabel()
     }
-    //讀cell裡面 輸入的文字
-    func catchEnterData(){
-            var i = 0
-            while i < personalData.count {
-                let indexPath = IndexPath(row: i, section: 0)
-                let cell : SIngUpTableViewCell? = (self.tableView.cellForRow(at: indexPath) as! SIngUpTableViewCell?)
-                if let item = cell?.singUpTex.text {
-                    arrayOfNames.append(item)
-                    
-                }
-                i = i + 1
-            }
-    }
     //上傳資料
     func postSingData(){
-        catchEnterData()
         let singUpItem = UploadData(records: [.init(fields: .init(StrokeName: page3Data.name!,
-                                                                  Name: arrayOfNames[0], Birthday: arrayOfNames[1], IDNumber: arrayOfNames[2], PhoneNumber: arrayOfNames[3],      NumberOfPeople: page3Data.value!, TotalSum: page3Data.sum!                   ))])
+                                                                  Name: dataTexField[0].text!, Birthday: dataTexField[1].text!, IDNumber:dataTexField[2].text!, PhoneNumber: dataTexField[3].text!,      NumberOfPeople: page3Data.value!, TotalSum: page3Data.sum!                   ))])
         let url = URL(string: "https://api.airtable.com/v0/app5ZRbQye9xZvWSR/Table%201?maxRecords=3&view=Grid%20view")!
         var request = URLRequest(url: url)
         request.httpMethod = "Post"
@@ -67,8 +50,6 @@ class SingUpTableViewController: UITableViewController {
                     print(content!)
                     DispatchQueue.main.async {
                         self.jumpToOderController() //跳到訂單資料畫面
-                        
-                        
                     }
                 }else{
                     print(error)
@@ -78,16 +59,15 @@ class SingUpTableViewController: UITableViewController {
         
     }
 //    //跳出未填寫完資料通知
-//    func showNotFinshDataAlertController(){
-//        let controller = UIAlertController(title: "請確認資料是否填寫完整", message: "", preferredStyle: .alert)
-//        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
-//        controller.addAction(action)
-//        present(controller, animated: true, completion: nil)
-//    }
+    func showNotFinshDataAlertController(){
+        let controller = UIAlertController(title: "請確認資料是否填寫完整", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "確定", style: .default, handler: nil)
+        controller.addAction(action)
+        present(controller, animated: true, completion: nil)
+    }
     //跳出資料確認通知
     func showConfirmDataAlerController(){
-        catchEnterData()
-        let controller = UIAlertController(title: "確認送出訂單", message: "\n \(page3Data.name!) \n \(page3Data.data!)\n \(page3Data.value!)人 \n 總金額:\(page3Data.sum!)ＲＭ \n 聯絡人資訊 \n 姓名:\(arrayOfNames[0])\n 生日:\(arrayOfNames[1])\n護照號碼:\(arrayOfNames[2])\n 電話號碼:\(arrayOfNames[3])", preferredStyle: .alert)
+        let controller = UIAlertController(title: "確認送出訂單", message: "\n \(page3Data.name!) \n \(page3Data.data!)\n \(page3Data.value!)人 \n 總金額:\(page3Data.sum!)ＲＭ \n 聯絡人資訊 \n 姓名:\(dataTexField[0].text!)\n 生日:\(dataTexField[1].text!)\n護照號碼:\(dataTexField[2].text!)\n 電話號碼:\(dataTexField[3].text!)", preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "確認", style: .default) { _ in
             self.postSingData() //點選確認 執行上傳資料func
@@ -107,29 +87,21 @@ class SingUpTableViewController: UITableViewController {
         }
         
     }
-    
-    
-    
     //送出資料
     @IBAction func postData(_ sender: UIButton) {
-        catchEnterData() // 讀取cell填寫內容
-        showConfirmDataAlerController()//跳出資料確認通知
+//        showConfirmDataAlerController()//跳出資料確認通知
+        if dataTexField[0].text?.isEmpty == false,
+           dataTexField[1].text?.isEmpty == false,
+           dataTexField[2].text?.isEmpty == false,
+           dataTexField[3].text?.isEmpty == false{
+            showConfirmDataAlerController()//跳出資料確認通知
+            
+        }else{
+            showNotFinshDataAlertController()
+        }
+       
     }
-    
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1 //等於上一頁選擇人數
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return personalData.count //等於資料格數
-    }
-
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(SIngUpTableViewCell.self)", for: indexPath) as? SIngUpTableViewCell else { return UITableViewCell() }
         
@@ -152,7 +124,7 @@ class SingUpTableViewController: UITableViewController {
         }
         return cell
     }
-    
+    */
 
     /*
     // Override to support conditional editing of the table view.

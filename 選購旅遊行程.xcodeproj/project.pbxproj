@@ -23,7 +23,6 @@
 		4DE9A797265A61A2005E5045 /* SingUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9A796265A61A2005E5045 /* SingUpTableViewController.swift */; };
 		4DE9A79A265A662E005E5045 /* SIngUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9A799265A662E005E5045 /* SIngUpTableViewCell.swift */; };
 		4DE9A79C265B57E0005E5045 /* UploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9A79B265B57E0005E5045 /* UploadData.swift */; };
-		4DE9A79E265B736D005E5045 /* ShowDataTex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9A79D265B736D005E5045 /* ShowDataTex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +44,6 @@
 		4DE9A796265A61A2005E5045 /* SingUpTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingUpTableViewController.swift; sourceTree = "<group>"; };
 		4DE9A799265A662E005E5045 /* SIngUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIngUpTableViewCell.swift; sourceTree = "<group>"; };
 		4DE9A79B265B57E0005E5045 /* UploadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UploadData.swift; path = "填寫報名資料/data/UploadData.swift"; sourceTree = SOURCE_ROOT; };
-		4DE9A79D265B736D005E5045 /* ShowDataTex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDataTex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +133,6 @@
 				4DE9A799265A662E005E5045 /* SIngUpTableViewCell.swift */,
 				4DE9A79B265B57E0005E5045 /* UploadData.swift */,
 				4D521543265E95DD00C059A2 /* Page3Data.swift */,
-				4DE9A79D265B736D005E5045 /* ShowDataTex.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -210,7 +207,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DE9A79E265B736D005E5045 /* ShowDataTex.swift in Sources */,
 				4DE9A7872658BE4C005E5045 /* CatchHomeData.swift in Sources */,
 				4DE9A791265901E8005E5045 /* ChooseDataViewController.swift in Sources */,
 				4DE9A7892658D3D2005E5045 /* CatchHomeCellTableViewCell.swift in Sources */,
