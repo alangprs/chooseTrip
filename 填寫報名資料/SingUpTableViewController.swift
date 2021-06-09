@@ -10,15 +10,10 @@ class SingUpTableViewController: UITableViewController {
     @IBOutlet var singUpShowLabel: [UILabel]!
     //基本資料cell
     @IBOutlet var dataTexField: [UITextField]!
+    let datePicker = UIDatePicker()
     //接第二頁傳來的資料
     var page3Data:PageData
-    //文字顯示
-    func showLabel(){
-        singUpShowLabel[0].text = "行程名稱：\(page3Data.name!)"
-        singUpShowLabel[1].text = "每個\(page3Data.data!)"
-        singUpShowLabel[2].text = "目前人數：\(page3Data.value!)人"
-        singUpShowLabel[3].text = "總金額：\(page3Data.sum!)ＲＭ"
-    }
+    
     
     init?(coder:NSCoder,page3Data:PageData){
         self.page3Data = page3Data
@@ -28,10 +23,39 @@ class SingUpTableViewController: UITableViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    func createToolBar() -> UIToolbar{
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(pressed))
+        toolbar.setItems([barButtonItem], animated: true)
+        return toolbar
+    }
+    func createDatePicker(){
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        datePicker.locale = Locale(identifier: "zh_TW")
+        dataTexField[1].inputView = datePicker
+        dataTexField[1].inputAccessoryView = createToolBar()
+    }
+    @objc func pressed(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        self.dataTexField[1].text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+    }
+    //文字顯示
+    func showLabel(){
+        singUpShowLabel[0].text = "行程名稱：\(page3Data.name!)"
+        singUpShowLabel[1].text = "每個\(page3Data.data!)"
+        singUpShowLabel[2].text = "目前人數：\(page3Data.value!)人"
+        singUpShowLabel[3].text = "總金額：\(page3Data.sum!)ＲＭ"
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         showLabel()
+        createDatePicker()
     }
     //上傳資料
     func postSingData(){
